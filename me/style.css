@@ -1,0 +1,145 @@
+@import url(https://fonts.googleapis.com/css?family=Share+Tech+Mono);
+.filemgr a,
+.footer a,
+.menu a,
+a,
+h1 a {
+    text-decoration: none
+}
+
+.act,
+.footer,
+.menu,
+.tdtl,
+h2 {
+    text-align: center
+}
+
+.file-man,
+.filemgr,
+.txarea {
+    width: 100%
+}
+
+body {
+    font-family: Monospace!important;
+    background-color: #222;
+    font-size: 1px;
+    color: #e1e1e1
+}
+
+h1 a,
+h2 {
+    font-size: 20px
+}
+
+.menu a,
+h1 a,
+h2 {
+    color: #df5
+}
+
+h1 a {
+    font-weight: 300;
+    font-family: 'Share Tech Mono';
+    margin: 0
+}
+
+h2 {
+    padding-top: 5px;
+    margin: 10px 0 0
+}
+
+.container,
+.filemgr,
+.menu {
+    font-size: 12px
+}
+
+.menu {
+    background-color: #444;
+    padding: 7px;
+    margin-top: 10px;
+    margin-bottom: 15px
+}
+
+.menu a {
+    display: inline-block
+}
+
+.menu a span {
+    color: #e1e1e1
+}
+
+.file-man,
+.filemgr a,
+.footer a,
+.tdtl,
+.txarea,
+a {
+    color: #df5
+}
+
+.filemgr td {
+    padding: 5px
+}
+
+.tdtl {
+    background: #444;
+    font-weight: 700
+}
+
+.footer {
+    border-radius: 30px;
+    margin-top: 25px;
+    border-top: 1px double #df5;
+    padding: 5px
+}
+
+p {
+    word-wrap: break-word;
+    margin: 2
+}
+
+.txarea {
+    height: 200px;
+    background: 0 0;
+    border: 1px solid #df5;
+    padding: 1px
+}
+
+h4 {
+    margin: 0
+}
+
+.file-man {
+    font-size: 20px;
+    margin-bottom: 5px;
+    padding-left: 4px;
+    border-left: 4px solid #df5
+}
+
+#table-garis th {
+    background-color: #5e5e5e
+}
+
+#table-garis tr {
+    background-color: #444
+}
+
+#table-garis tr:nth-child(even) {
+    background-color: #333
+}
+
+#table-garis tr:hover {
+    background-color: #5e5e5e
+}
+
+#table-garis .dbox {
+    color: #df5;
+    font-size: 1em
+}
+
+.langit:hover {
+    color: #df5!important
+}
