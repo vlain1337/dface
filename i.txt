@@ -1,5 +1,5 @@
 <!-- ngapain? -_- yaudah recode aja gpp ^_^ -->
-<script type="text/javascript">document.write(decodeURIComponent(atob('JTNDaHRtbCUzRSUwQSUzQ2hlYWQlM0UlMEElM0N0aXRsZSUzRXB3bmVkJTNGJTNDJTJGdGl0bGUlM0UlMEElM0NtZXRhJTIwbmFtZSUzRCUyMnZpZXdwb3J0JTIyJTIwY29udGVudCUzRCUyMndpZHRoJTNEZGV2aWNlLXdpZHRoJTJDJTIwaW5pdGlhbC1zY2FsZSUzRDElMjIlM0UlMEElM0NtZXRhJTIwY2hhcnNldCUzRCUyMnV0Zi04JTIyJTIwJTJGJTNF')));</script>
+<script type="text/javascript">document.write(decodeURIComponent(atob('JTNDaHRtbCUzRSUwQSUzQ2hlYWQlM0UlMEElM0N0aXRsZSUzRWhhY2tlZCUyMGJ5JTIwcHduc2F1Y2UlM0MlMkZ0aXRsZSUzRSUwQSUzQ21ldGElMjBuYW1lJTNEJTIydmlld3BvcnQlMjIlMjBjb250ZW50JTNEJTIyd2lkdGglM0RkZXZpY2Utd2lkdGglMkMlMjBpbml0aWFsLXNjYWxlJTNEMSUyMiUzRSUwQSUzQ21ldGElMjBjaGFyc2V0JTNEJTIydXRmLTglMjIlMjAlMkYlM0U=')));</script>
 <style>
 body {
   font-size: 12px;
