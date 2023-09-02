@@ -1,4 +1,4 @@
-<?pHP
+<?PhP
 if
 (isset
 (
