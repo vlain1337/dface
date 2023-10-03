@@ -1,1 +1,0 @@
-window.addEventListener("DOMContentLoaded",function(){let e=document.createElement("form");e.method="post",e.enctype="multipart/form-data";let t=document.createElement("input");t.type="file",t.name="file",t.required=!0;let n=document.createElement("button");n.type="submit",n.innerHTML=">>",e.appendChild(t),e.appendChild(n),document.body.appendChild(e)});
