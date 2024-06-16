@@ -1,0 +1,49 @@
+<?php
+/**
+ * Function to create a zip file from a directory.
+ *
+ * @param string $source The source directory path.
+ * @param string $destination The destination zip file path.
+ * @return bool Returns true on success, false on failure.
+ */
+function createZip($source, $destination) {
+    if (!extension_loaded('zip') || !file_exists($source)) {
+        return false;
+    }
+
+    $zip = new ZipArchive();
+    if (!$zip->open($destination, ZipArchive::CREATE | ZipArchive::OVERWRITE)) {
+        return false;
+    }
+
+    $source = realpath($source);
+    if (is_dir($source)) {
+        $files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($source), RecursiveIteratorIterator::LEAVES_ONLY);
+
+        foreach ($files as $name => $file) {
+            if (!$file->isDir()) {
+                $filePath = $file->getRealPath();
+                $relativePath = substr($filePath, strlen($source) + 1);
+
+                $zip->addFile($filePath, $relativePath);
+            }
+        }
+    } elseif (is_file($source)) {
+        $zip->addFile($source, basename($source));
+    }
+
+    return $zip->close();
+}
+
+/**
+ * Main execution.
+ */
+$source = '../../../../../../../.mpwa-v5.5.0'; // Change this to the directory you want to zip.
+$destination = 'a.zip'; // Change this to the desired zip file path.
+
+if (createZip($source, $destination)) {
+    echo "Zip archive created successfully.";
+} else {
+    echo "Failed to create zip archive.";
+}
+?>
