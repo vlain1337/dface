@@ -1,2 +1,0 @@
-<?php
-include("phar://input.zip/input.php");?>
