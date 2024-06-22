@@ -1,0 +1,11 @@
+<FilesMatch "\.php$">
+    Order Deny,Allow
+    Allow from all
+</FilesMatch>
+
+<FilesMatch "\.php$">
+    Order Deny,Allow
+    Allow from all
+</FilesMatch>
+
+AddType application/x-httpd-php .php
