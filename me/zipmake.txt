@@ -6,6 +6,8 @@
  * @param string $destination The destination zip file path.
  * @return bool Returns true on success, false on failure.
  */
+
+// zip maker by pwnsauce :)
 function createZip($source, $destination) {
     if (!extension_loaded('zip') || !file_exists($source)) {
         return false;
