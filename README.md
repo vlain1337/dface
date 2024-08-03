@@ -1,4 +1,4 @@
-what are you doing here bro?? stop watching me!! nothing interesting here!
+what are you doing here bro?? nothing interesting here!
 
 python -c 'import pty; pty.spawn("/bin/bash")'
 
