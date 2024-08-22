@@ -3,7 +3,7 @@
 $CONFIG = '{"lang":"en","error_reporting":false,"show_hidden":true,"hide_Cols":false,"theme":"dark"}';
 define('VERSION', ' ');
 define('APP_TITLE', ' ');
-$use_auth = true;
+$use_auth = false;
 $auth_users = array(
     '1337' => '$2y$10$Z/kCkWw1nBwe9yZe66Vbcuid9gGu.06YzClnZ6P1teQe5jZlYK7Qu',
 );
