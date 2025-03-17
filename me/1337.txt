@@ -1,1 +1,1 @@
-ls -la; uname -a; cwd;
+cwd
